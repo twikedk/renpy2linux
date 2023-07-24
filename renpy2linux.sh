@@ -11,19 +11,18 @@ BASEDIR=$(pwd)
 
 trap 'cd "$BASEDIR" && rm -rf __tmp' EXIT
 
-
 echo "==> Determining game information..."
 
 # Read Ren'Py version.
 if test $# -gt 1 ; then
     RENPYVER=$2
 else
-    if [ ! -f renpy/__init__.py ]; then
-        echo "!! Could not read renpy/__init__.py -- is this a Ren'Py game?"
+    if [ ! -f game/script_version.txt ]; then
+        echo "!! Could not read game/script_version.txt -- is this a Ren'Py game?"
         exit 1
     fi
 
-    RENPYVER=$(python -c 'from renpy import version_tuple; print ".".join(str(i) for i in version_tuple[:3])')
+    RENPYVER=$(echo "$(cat game/script_version.txt)" | tr ',' '.' | tr -d ' ()')
 fi
 echo "=> Ren'Py version: ${RENPYVER}"
 
