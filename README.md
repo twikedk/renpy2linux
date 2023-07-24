@@ -8,7 +8,6 @@ Prerequisites
 * POSIX-compatible sh (like bash)
 * wget
 * tar
-* Python 2.x
 * Internet access
 
 License
